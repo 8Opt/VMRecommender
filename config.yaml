@@ -1,0 +1,21 @@
+chat_model: 
+  task: text-generation
+  model_id: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  torch_dtype: torch.bfloat16
+  device: cpu
+  settings: 
+    max_new_tokens: 512
+    do_sample: True
+    temperature: 1.0
+
+faiss_setting: 
+  model_id: sentence-transformers/multi-qa-mpnet-base-dot-v1
+  keep_columns:
+    - Platform
+    - Distributor
+    - Description
+    - Min_CPU
+    - Min_RAM_GB
+    - Min_Storage_GB
+    - Installed_Software
+    - Image_Version
