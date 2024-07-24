@@ -18,6 +18,7 @@ class FAISS:
         csv_dataset = self._preparing_csv_dataset(self.data_dir)
         embedding_dataset = self.get_embedding_dataset(csv_dataset)
         question_embedding = self.get_embeddings([input]).detach().numpy()
+        embedding_dataset.add_faiss_index(column="embeddings")
         scores, samples = embedding_dataset.get_nearest_examples(
             "embeddings", question_embedding, k=k
         )
@@ -33,9 +34,9 @@ class FAISS:
     def _preparing_csv_dataset(self, dir:str, 
                             keep_column:list[str]=['Platform', 'Distributor', 'Description', 'Min_CPU', 'Min_RAM_GB', 'Min_Storage_GB', 'Installed_Software', 'Image_Version']
                             )-> pd.DataFrame: 
-        if not 'csv' in dir: 
+        if not '.csv' in dir: 
             return None
-        dataset = load_dataset('csv', dir)
+        dataset = load_dataset('csv', data_files=dir)
         columns = dataset.column_names
         columns_to_remove = set(keep_column).symmetric_difference(columns['train'])
         issues_dataset = dataset.remove_columns(columns_to_remove)

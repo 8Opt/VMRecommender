@@ -9,6 +9,8 @@ Question: {question}
 
 Context: {context} 
 
+If you do not have any related information, please answer you don't know!
+
 Answer:
 
 """

@@ -8,14 +8,5 @@ chat_model:
     do_sample: True
     temperature: 1.0
 
-faiss_setting: 
+faiss_settings: 
   model_id: sentence-transformers/multi-qa-mpnet-base-dot-v1
-  keep_columns:
-    - Platform
-    - Distributor
-    - Description
-    - Min_CPU
-    - Min_RAM_GB
-    - Min_Storage_GB
-    - Installed_Software
-    - Image_Version
